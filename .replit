@@ -1,0 +1,33 @@
+modules = ["python-3.11"]
+
+[nix]
+channel = "stable-24_05"
+packages = ["cargo", "libiconv", "rustc"]
+
+[workflows]
+runButton = "Project"
+
+[[workflows.workflow]]
+name = "Project"
+mode = "parallel"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "Django RAG Server"
+
+[[workflows.workflow]]
+name = "Django RAG Server"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "python manage.py migrate && python manage.py runserver 0.0.0.0:5000"
+waitForPort = 5000
+
+[deployment]
+run = ["sh", "-c", "uv add django djangorestframework django-cors-headers PyPDF2 python-docx tiktoken chromadb sentence-transformers && python manage.py migrate && python manage.py runserver 0.0.0.0:5000"]
+
+[[ports]]
+localPort = 5000
+externalPort = 80

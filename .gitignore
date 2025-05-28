@@ -1,0 +1,42 @@
+# Django
+*.log
+*.pot
+*.pyc
+__pycache__/
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+
+# Media files
+media/documents/*
+!media/documents/.gitkeep
+
+# Virtual environment
+.env
+.venv
+env/
+venv/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Vector store data
+embeddings_data.json
+chromadb_data/
+
+# Secret keys
+.env
+*.key
+
+# Static files (optional, if you collect static files)
+staticfiles/
+
+# Logs
+*.log
